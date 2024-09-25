@@ -267,21 +267,21 @@ https://www.tooplate.com/view/2115-marvel
           
           <div class="col-lg-5 mr-lg-5 col-12">
             <div class="google-map w-100">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12088.558402180099!2d-73.99373482142036!3d40.75895421922642!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855b8fb3083%3A0xa0f9aef176042a5c!2sTheater+District%2C+New+York%2C+NY%2C+USA!5e0!3m2!1sen!2smm!4v1549875377188" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3459.4864017468963!2d31.31100817540668!3d29.87908237500723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145836f98cfe48bb%3A0x8518c37248d0aa69!2sWadi%20Hof!5e0!3m2!1sen!2seg!4v1727267037641!5m2!1sen!2seg" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
             </div>
 
             <div class="contact-info d-flex justify-content-between align-items-center py-4 px-lg-5">
                 <div class="contact-info-item">
                   <h3 class="mb-3 text-white">Say hello</h3>
-                  <p class="footer-text mb-0">010 020 0960</p>
-                  <p><a href="mailto:hello@company.co">hello@company.co</a></p>
+                  <p class="footer-text mb-0">+2 012 2274 4992</p>
+                  <p><a href="mailto:doaa.farouk07@gmail.com">doaa.farouk07@gmail.com</a></p>
                 </div>
 
-                <ul class="social-links">
+                <!-- <ul class="social-links">
                      <li><a href="#" class="uil uil-dribbble" data-toggle="tooltip" data-placement="left" title="Dribbble"></a></li>
                      <li><a href="#" class="uil uil-instagram" data-toggle="tooltip" data-placement="left" title="Instagram"></a></li>
                      <li><a href="#" class="uil uil-youtube" data-toggle="tooltip" data-placement="left" title="Youtube"></a></li>
-                </ul>
+                </ul> -->
             </div>
           </div>
 
@@ -289,18 +289,18 @@ https://www.tooplate.com/view/2115-marvel
             <div class="contact-form">
               <h2 class="mb-4">Interested to work together? Let's talk</h2>
 
-              <form action="" method="get">
+              <form id="contact" onsubmit="return postToGoogle();">
                 <div class="row">
                   <div class="col-lg-6 col-12">
-                    <input type="text" class="form-control" name="name" placeholder="Your Name" id="name">
+                    <input type="text" class="form-control" name="entry.1307961963" placeholder="Your Name" id="name">
                   </div>
 
                   <div class="col-lg-6 col-12">
-                    <input type="email" class="form-control" name="email" placeholder="Email" id="email">
+                    <input type="email" class="form-control" name="entry.2143100119" placeholder="Email" id="email">
                   </div>
 
                   <div class="col-12">
-                    <textarea name="message" rows="6" class="form-control" id="message" placeholder="Message"></textarea>
+                    <textarea name="entry.367833247" rows="6" class="form-control" id="message" placeholder="Message"></textarea>
                   </div>
 
                   <div class="ml-lg-auto col-lg-5 col-12">
@@ -337,6 +337,34 @@ https://www.tooplate.com/view/2115-marvel
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/smoothscroll.js"></script>
     <script src="js/custom.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+    <script>
+        function postToGoogle() {
+          var field1 = $("#name").val();
+          var field2 = $("#email").val();
+          var field3 = $("#message").val();
+    
+          $.ajax({
+            url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfy12xXodCPGm4sDYybX8unlOWGyXE-PsYM0UBbXon936UL1A/formResponse",
+              
+            //add your google form generated numbers below which are also the 'names' of your inputs     
+            data: {
+              "entry.1307961963": field1,
+              "entry.2143100119": field2,
+              "entry.367833247": field3
+            },
+            type: "POST",
+            dataType: "xml",
+            success: function (d) {
+              $('#contact').trigger('reset');
+            },
+            error: function (x, y, z) {
+              $('#contact').trigger('reset');
+            }
+          });
+          return false;
+        }
+      </script>
   </body>
 </html>
